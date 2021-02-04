@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReactionGame.Repository
 {
-    interface IHighscoreRepository
+    public interface IHighscoreRepository
     {
         Task<Highscore> NewHighscores(Highscore NewHighscore);
 

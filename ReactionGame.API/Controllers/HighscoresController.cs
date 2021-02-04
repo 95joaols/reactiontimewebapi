@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using ReactionGame.Entety;
+using ReactionGame.Repository;
 
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,20 @@ namespace ReactionGame.API.Controllers
     [Route("[controller]")]
     public class HighscoresController : ControllerBase
     {
+        private readonly IHighscoreRepository Repository = new HighscoreRepositoryFile("Highscore.txt");
+
         [HttpGet] //Highscores
-        public ActionResult<IEnumerable<Highscore>> GetHighscores()
+        public async Task<ActionResult<IEnumerable<Highscore>>> GetHighscoresAsync()
         {
-            return NoContent();
+            IEnumerable<Highscore> highscores = await Repository.GetHighscores();
+            if (highscores == null)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return Ok(highscores);
+            }
         }
 
         [HttpPost] //Highscores

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ReactionGame.Repository
 {
-    class HighscoreRepositoryFile : IHighscoreRepository
+    public class HighscoreRepositoryFile : IHighscoreRepository
     {
         readonly string fileLocation;
         private static int nextId = 0;
@@ -72,7 +72,13 @@ namespace ReactionGame.Repository
         private async Task WriteToFile(IEnumerable<Highscore> highscore)
         {
             string SerializeHighscore = JsonSerializer.Serialize(highscore);
-            await File.WriteAllTextAsync(fileLocation, SerializeHighscore);
+            try
+            {
+                await File.WriteAllTextAsync(fileLocation, SerializeHighscore);
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }
