@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 
+using ReactionGame.Entety;
+
 namespace ReactionGame
 {
     class Program

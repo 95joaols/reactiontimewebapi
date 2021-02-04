@@ -1,6 +1,6 @@
-namespace ReactionGame
+namespace ReactionGame.Entety
 {
-    class Highscore
+    public class Highscore
     {
         public string Name { get; set; }
         public long Time { get; set; }
