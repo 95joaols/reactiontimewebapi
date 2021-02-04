@@ -32,14 +32,18 @@ namespace ReactionGame.API.Controllers
         }
 
         [HttpPost] //Highscores
-        public ActionResult<Highscore> NewHighscores(Highscore NewHighscore)
+        public async Task<ActionResult<Highscore>> NewHighscoresAsync(Highscore NewHighscore)
         {
-            if (NewHighscore is null)
+            if (NewHighscore == null)
             {
                 return BadRequest();
             }
-
-            return NoContent();
+            Highscore highscore = await Repository.NewHighscores(NewHighscore);
+            if (highscore == null)
+            {
+                return NoContent();
+            }
+            return CreatedAtAction(nameof(GetHighscoresById), new { highscore.Id }, highscore);
         }
 
         [HttpGet("{id}")] //Highscores/id
