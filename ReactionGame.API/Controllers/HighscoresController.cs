@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 using ReactionGame.Entety;
 using ReactionGame.Repository;
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,7 +19,7 @@ namespace ReactionGame.API.Controllers
         public async Task<ActionResult<IEnumerable<Highscore>>> GetHighscoresAsync()
         {
             IEnumerable<Highscore> highscores = await Repository.GetHighscores();
-            if (highscores == null)
+            if (highscores == null || !highscores.Any())
             {
                 return NoContent();
             }
@@ -43,31 +41,43 @@ namespace ReactionGame.API.Controllers
             {
                 return NoContent();
             }
-            return CreatedAtAction(nameof(GetHighscoresById), new { highscore.Id }, highscore);
+            return CreatedAtAction(nameof(GetHighscoresByIdAsync), new { highscore.Id }, highscore);
         }
 
         [HttpGet("{id}")] //Highscores/id
-        public ActionResult<Highscore> GetHighscoresById(int id)
+        public async Task<ActionResult<Highscore>> GetHighscoresByIdAsync(int id)
         {
-            return NoContent();
+            Highscore highscore = await Repository.GetHighscoresById(id);
+            if (highscore == null)
+            {
+                return NoContent();
+            }
+            return Ok(highscore);
         }
 
         [HttpGet("{username}")] //Highscores/username
-        public ActionResult<Highscore> GetHighscoresByUsername(string username)
+        public async Task<ActionResult<IEnumerable<Highscore>>> GetHighscoresByUsernameAsync(string username)
         {
-            return NoContent();
+            IEnumerable<Highscore> highscores = await Repository.GetHighscoresByUsername(username);
+            if (highscores == null || !highscores.Any())
+            {
+                return NoContent();
+            }
+            return Ok(highscores);
         }
 
         [HttpDelete] //Highscores
-        public ActionResult DeleteAllHighscores()
+        public async Task<ActionResult> DeleteAllHighscoresAsync()
         {
-            return NoContent();
+            await Repository.DeleteAllHighscores();
+            return Ok();
         }
 
         [HttpDelete("{username}")] //Highscores/usernames
-        public ActionResult DeleteHighscoresFromUsername(string username)
+        public async Task<ActionResult> DeleteHighscoresFromUsernameAsync(string username)
         {
-            return NoContent();
+            await Repository.DeleteHighscoresFromUsername(username);
+            return Ok();
         }
     }
 }
