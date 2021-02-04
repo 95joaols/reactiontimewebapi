@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ReactionGame.Entety\ReactionGame.Entety.csproj" />
+    <ProjectReference Include="..\ReactionGame.Repository\ReactionGame.Repository.csproj" />
   </ItemGroup>
 
 </Project>

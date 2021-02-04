@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionGame.Console", "Rea
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionGame.Entety", "ReactionGame.Entety\ReactionGame.Entety.csproj", "{727E0D8F-0426-4B90-8B4F-0FB507411398}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactionGame.Repository", "ReactionGame.Repository\ReactionGame.Repository.csproj", "{AA4C68E4-A093-44DE-A70C-E90C0E50E219}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{727E0D8F-0426-4B90-8B4F-0FB507411398}.Release|x64.Build.0 = Release|Any CPU
 		{727E0D8F-0426-4B90-8B4F-0FB507411398}.Release|x86.ActiveCfg = Release|Any CPU
 		{727E0D8F-0426-4B90-8B4F-0FB507411398}.Release|x86.Build.0 = Release|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Debug|x64.Build.0 = Debug|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Debug|x86.Build.0 = Debug|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Release|x64.ActiveCfg = Release|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Release|x64.Build.0 = Release|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Release|x86.ActiveCfg = Release|Any CPU
+		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
