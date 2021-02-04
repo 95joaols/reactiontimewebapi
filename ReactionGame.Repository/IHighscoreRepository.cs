@@ -1,8 +1,6 @@
 ﻿using ReactionGame.Entety;
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ReactionGame.Repository

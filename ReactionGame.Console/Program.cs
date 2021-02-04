@@ -1,17 +1,17 @@
-﻿using System;
+﻿using ReactionGame.Entety;
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 
-using ReactionGame.Entety;
-
 namespace ReactionGame
 {
-    class Program
+    internal class Program
     {
-        static List<Highscore> highscores = new List<Highscore>();
+        private static readonly List<Highscore> highscores = new List<Highscore>();
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Random random = new Random();
 
@@ -59,13 +59,20 @@ namespace ReactionGame
 
                 Console.WriteLine("\nTryck på valfri tangent för att börja om, eller Q för att avsluta.");
                 ConsoleKey key = Console.ReadKey(true).Key;
-                if (key == ConsoleKey.Q) Environment.Exit(0);
+                if (key == ConsoleKey.Q)
+                {
+                    Environment.Exit(0);
+                }
             }
         }
 
         private static bool CheckNewHighscore(long elapsedMilliseconds)
         {
-            if (highscores.Count == 0) return true;
+            if (highscores.Count == 0)
+            {
+                return true;
+            }
+
             foreach (Highscore score in highscores)
             {
                 if (elapsedMilliseconds < score.Time)
@@ -76,7 +83,7 @@ namespace ReactionGame
             return false;
         }
 
-        static void RegisterNewHighscore(long time)
+        private static void RegisterNewHighscore(long time)
         {
             Console.WriteLine("\nNytt rekord!");
             Console.Write("Skriv ditt namn: ");
