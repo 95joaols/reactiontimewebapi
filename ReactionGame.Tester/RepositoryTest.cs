@@ -18,7 +18,7 @@ namespace ReactionGame.Tester
         public async Task TestIfICanAddAHighscoreAsync()
         {
             //Arrange
-            Highscore highscore = new Highscore("Tester",100);
+            Highscore highscore = new Highscore("Tester", 100);
             IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
 
             //Act
@@ -45,6 +45,31 @@ namespace ReactionGame.Tester
             //Assert
             Assert.IsNotNull(GetHighscores);
         }
+
+        [TestMethod]
+        public async Task TestIfICanGetAllHighscoreByUsernameAsync()
+        {
+            //Arrange
+            IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
+
+            Highscore highscore = new Highscore("Tester", 100);
+            Highscore highscore1 = new Highscore("Tester1", 100);
+            Highscore highscore2 = new Highscore("Tester", 100);
+            Highscore highscore3 = new Highscore("Tester3", 100);
+
+            await repository.NewHighscores(highscore);
+            await repository.NewHighscores(highscore1);
+            await repository.NewHighscores(highscore2);
+            await repository.NewHighscores(highscore3);
+
+            //Act
+            IEnumerable<Highscore> GetHighscores = await repository.GetHighscoresByUsername("Tester");
+            File.Delete(testfile);
+
+            //Assert
+            Assert.AreEqual(2,GetHighscores?.Count());
+        }
+
         [TestMethod]
         public async Task TestIfIAdd3DataThatIGet3DataAsync()
         {
@@ -63,7 +88,7 @@ namespace ReactionGame.Tester
             File.Delete(testfile);
 
             //Assert
-            Assert.AreEqual(3,GetHighscores?.Count());
+            Assert.AreEqual(3, GetHighscores?.Count());
         }
 
         [TestMethod]
@@ -80,7 +105,7 @@ namespace ReactionGame.Tester
             File.Delete(testfile);
 
             //Assert
-            Assert.AreEqual(0,GetHighscores?.Count());
+            Assert.AreEqual(0, GetHighscores?.Count());
         }
 
         [TestMethod]
@@ -88,7 +113,7 @@ namespace ReactionGame.Tester
         {
             //Arrange
             Highscore highscoreNull = null;
-            Highscore highscoreNullName = new Highscore(null,100);
+            Highscore highscoreNullName = new Highscore(null, 100);
             Highscore highscoreNoName = new Highscore("", 100);
             Highscore highscoreNotime = new Highscore("", 0);
             IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
@@ -97,7 +122,7 @@ namespace ReactionGame.Tester
             Highscore addedhighscoreNull = null;
             try
             {
-            addedhighscoreNull = await repository.NewHighscores(highscoreNull);
+                addedhighscoreNull = await repository.NewHighscores(highscoreNull);
 
             }
             catch (System.Exception)
