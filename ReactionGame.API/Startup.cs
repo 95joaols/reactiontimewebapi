@@ -20,11 +20,11 @@ namespace ReactionGame.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReactionGame.API", Version = "v1" });
-            });
+            _ = services.AddControllers();
+            _ = services.AddSwaggerGen(c =>
+              {
+                  c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReactionGame.API", Version = "v1" });
+              });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,21 +32,21 @@ namespace ReactionGame.API
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ReactionGame.API v1"));
+                _ = app.UseDeveloperExceptionPage();
+                _ = app.UseSwagger();
+                _ = app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ReactionGame.API v1"));
             }
 
-            app.UseHttpsRedirection();
+            _ = app.UseHttpsRedirection();
 
-            app.UseRouting();
+            _ = app.UseRouting();
 
-            app.UseAuthorization();
+            _ = app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            _ = app.UseEndpoints(endpoints =>
+              {
+                  _ = endpoints.MapControllers();
+              });
         }
     }
 }

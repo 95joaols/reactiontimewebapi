@@ -4,14 +4,20 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Net.Http.Json;
+using System.Net.Http;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ReactionGame
 {
     internal class Program
     {
-        private static readonly List<Highscore> highscores = new List<Highscore>();
+        //private static readonly List<Highscore> highscores = new List<Highscore>();
 
-        private static void Main(string[] args)
+        static HttpClient client = new HttpClient();
+
+        private static async Task Main(string[] args)
         {
             Random random = new Random();
 
@@ -21,7 +27,7 @@ namespace ReactionGame
                 Stopwatch stopwatch = new Stopwatch();
 
                 Console.WriteLine("Tryck valfri tangent för att starta spelet!");
-                Console.ReadKey(true);
+                _ = Console.ReadKey(true);
                 Console.WriteLine("Vänta lite...");
 
                 float waitTime = random.Next(500, 3000);
@@ -34,26 +40,28 @@ namespace ReactionGame
                 if (waitTime > 0)
                 {
                     Console.WriteLine("Tjuvstart! Prova igen.");
-                    Console.ReadKey(true);
+                    _ = Console.ReadKey(true);
                 }
                 else
                 {
                     Console.WriteLine("Tryck NU!!");
                     stopwatch.Start();
-                    Console.ReadKey(true);
+                    _ = Console.ReadKey(true);
                     stopwatch.Stop();
 
                     Console.WriteLine("Det tog: " + stopwatch.ElapsedMilliseconds + " millisekunder!");
 
-                    if (CheckNewHighscore(stopwatch.ElapsedMilliseconds))
+                    if (await CheckNewHighscoreAsync(stopwatch.ElapsedMilliseconds))
                     {
-                        RegisterNewHighscore(stopwatch.ElapsedMilliseconds);
+                        await RegisterNewHighscoreAsync(stopwatch.ElapsedMilliseconds);
                     }
 
                     Console.WriteLine("\nHIGHSCORE:");
-                    for (int i = highscores.Count; i > 0; i--)
+
+                    IEnumerable<Highscore> highscores = await client.GetFromJsonAsync<IEnumerable<Highscore>>("https://localhost:5001/Highscores");
+                    foreach (Highscore highscore in highscores)
                     {
-                        Console.WriteLine(highscores[i - 1]);
+                        Console.WriteLine(highscore);
                     }
                 }
 
@@ -66,9 +74,10 @@ namespace ReactionGame
             }
         }
 
-        private static bool CheckNewHighscore(long elapsedMilliseconds)
+        private static async Task<bool> CheckNewHighscoreAsync(long elapsedMilliseconds)
         {
-            if (highscores.Count == 0)
+            IEnumerable<Highscore> highscores = await client.GetFromJsonAsync<IEnumerable<Highscore>>("https://localhost:5001/Highscores");
+            if (!highscores.Any())
             {
                 return true;
             }
@@ -83,7 +92,7 @@ namespace ReactionGame
             return false;
         }
 
-        private static void RegisterNewHighscore(long time)
+        private static async Task RegisterNewHighscoreAsync(long time)
         {
             Console.WriteLine("\nNytt rekord!");
             Console.Write("Skriv ditt namn: ");
@@ -93,7 +102,7 @@ namespace ReactionGame
                 Name = newName,
                 Time = time
             };
-            highscores.Add(highscore);
+            HttpResponseMessage httpResponseMessage = await client.PostAsJsonAsync("https://localhost:5001/Highscores", highscore);
         }
     }
 }
