@@ -27,8 +27,13 @@ namespace ReactionGame.Repository
             {
                 IEnumerable<Highscore> highscore = await GetHighscores() ?? new List<Highscore>();
 
-                highscore.ToList().Add(NewHighscore);
-                await WriteToFile(highscore);
+                List<Highscore> highscoreList = highscore.ToList();
+                highscoreList.Add(NewHighscore);
+
+
+
+
+                await WriteToFile(highscoreList);
             }
             catch (Exception)
             {
@@ -39,9 +44,16 @@ namespace ReactionGame.Repository
 
         public async Task<IEnumerable<Highscore>> GetHighscores()
         {
-            string rawHighscore = await File.ReadAllTextAsync(fileLocation);
-            IEnumerable<Highscore> highscore = JsonSerializer.Deserialize<IEnumerable<Highscore>>(rawHighscore);
-            return highscore;
+            try
+            {
+                string rawHighscore = await File.ReadAllTextAsync(fileLocation);
+                IEnumerable<Highscore> highscore = JsonSerializer.Deserialize<IEnumerable<Highscore>>(rawHighscore);
+                return highscore;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public async Task<IEnumerable<Highscore>> GetHighscoresByUsername(string username)

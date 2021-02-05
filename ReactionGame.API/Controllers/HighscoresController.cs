@@ -41,7 +41,16 @@ namespace ReactionGame.API.Controllers
             {
                 return NoContent();
             }
-            return CreatedAtAction(nameof(GetHighscoresByIdAsync), new { highscore.Id }, highscore);
+            try
+            {
+                return CreatedAtAction(nameof(GetHighscoresByIdAsync), new { highscore.Id }, highscore);
+
+            }
+            catch (System.Exception e)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet("{id}")] //Highscores/id

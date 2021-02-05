@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactionGame.API", "ReactionGame.API\ReactionGame.API.csproj", "{A683EEE7-A6A1-46CD-9C2F-BE807478C11D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionGame.API", "ReactionGame.API\ReactionGame.API.csproj", "{A683EEE7-A6A1-46CD-9C2F-BE807478C11D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionGame.Console", "ReactionGame.Console\ReactionGame.Console.csproj", "{70A1F8B9-AAE6-4D4F-ADED-9BB779751085}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionGame.Entety", "ReactionGame.Entety\ReactionGame.Entety.csproj", "{727E0D8F-0426-4B90-8B4F-0FB507411398}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactionGame.Repository", "ReactionGame.Repository\ReactionGame.Repository.csproj", "{AA4C68E4-A093-44DE-A70C-E90C0E50E219}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionGame.Repository", "ReactionGame.Repository\ReactionGame.Repository.csproj", "{AA4C68E4-A093-44DE-A70C-E90C0E50E219}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactionGame.Tester", "ReactionGame.Tester\ReactionGame.Tester.csproj", "{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,18 @@ Global
 		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Release|x64.Build.0 = Release|Any CPU
 		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Release|x86.ActiveCfg = Release|Any CPU
 		{AA4C68E4-A093-44DE-A70C-E90C0E50E219}.Release|x86.Build.0 = Release|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Debug|x64.Build.0 = Debug|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Debug|x86.Build.0 = Debug|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Release|x64.ActiveCfg = Release|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Release|x64.Build.0 = Release|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Release|x86.ActiveCfg = Release|Any CPU
+		{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
