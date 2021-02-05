@@ -46,14 +46,34 @@ namespace ReactionGame.API.Controllers
                 return CreatedAtAction(nameof(GetHighscoresByIdAsync), new { highscore.Id }, highscore);
 
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
 
                 throw;
             }
         }
+        //[HttpGet("{id}")] //Highscores/id
+        //[ActionName(nameof(GetHighscoresByIdAsync))]
+        //public async Task<ActionResult<Highscore>> GetHighscoresByObjectAsync(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    if (int.TryParse(id, out int intId))
+        //    {
+        //    }
 
-        [HttpGet("{id}")] //Highscores/id
+        //    Highscore highscore = await Repository.GetHighscoresById(id);
+        //    if (highscore == null)
+        //    {
+        //        return NoContent();
+        //    }
+        //    return Ok(highscore);
+        //}
+
+        [HttpGet("{id:int}")] //Highscores/id
+        [ActionName(nameof(GetHighscoresByIdAsync))]
         public async Task<ActionResult<Highscore>> GetHighscoresByIdAsync(int id)
         {
             Highscore highscore = await Repository.GetHighscoresById(id);

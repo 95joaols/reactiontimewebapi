@@ -3,10 +3,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
-using System.Net.Http.Json;
-using System.Net.Http;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ReactionGame
@@ -15,7 +15,7 @@ namespace ReactionGame
     {
         //private static readonly List<Highscore> highscores = new List<Highscore>();
 
-        static HttpClient client = new HttpClient();
+        private static readonly HttpClient client = new HttpClient();
 
         private static async Task Main(string[] args)
         {

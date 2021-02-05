@@ -21,7 +21,7 @@ namespace ReactionGame.Repository
 
         public async Task<Highscore> NewHighscores(Highscore NewHighscore)
         {
-            if(string.IsNullOrWhiteSpace(NewHighscore?.Name) || NewHighscore?.Time == 0)
+            if (string.IsNullOrWhiteSpace(NewHighscore?.Name) || NewHighscore?.Time == 0)
             {
                 throw new ArgumentException();
             }
@@ -91,7 +91,7 @@ namespace ReactionGame.Repository
             {
                 await File.WriteAllTextAsync(fileLocation, SerializeHighscore);
             }
-            catch (Exception e)
+            catch (Exception)
             {
             }
         }

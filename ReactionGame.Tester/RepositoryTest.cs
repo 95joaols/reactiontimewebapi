@@ -13,7 +13,7 @@ namespace ReactionGame.Tester
     [TestClass]
     public class RepositoryTest
     {
-        const string testfile = "Tester.txt";
+        private const string testfile = "Tester.txt";
         [TestMethod]
         public async Task TestIfICanAddAHighscoreAsync()
         {
@@ -23,7 +23,6 @@ namespace ReactionGame.Tester
 
             //Act
             Highscore addedHighscore = await repository.NewHighscores(highscore);
-            File.Delete(testfile);
 
             //Assert
             Assert.IsNotNull(addedHighscore);
@@ -40,7 +39,6 @@ namespace ReactionGame.Tester
 
             //Act
             Highscore GetHighscores = await repository.GetHighscoresById(addedHighscore.Id);
-            File.Delete(testfile);
 
             //Assert
             Assert.IsNotNull(GetHighscores);
@@ -57,17 +55,16 @@ namespace ReactionGame.Tester
             Highscore highscore2 = new Highscore("Tester", 100);
             Highscore highscore3 = new Highscore("Tester3", 100);
 
-            await repository.NewHighscores(highscore);
-            await repository.NewHighscores(highscore1);
-            await repository.NewHighscores(highscore2);
-            await repository.NewHighscores(highscore3);
+            _ = await repository.NewHighscores(highscore);
+            _ = await repository.NewHighscores(highscore1);
+            _ = await repository.NewHighscores(highscore2);
+            _ = await repository.NewHighscores(highscore3);
 
             //Act
             IEnumerable<Highscore> GetHighscores = await repository.GetHighscoresByUsername("Tester");
-            File.Delete(testfile);
 
             //Assert
-            Assert.AreEqual(2,GetHighscores?.Count());
+            Assert.AreEqual(2, GetHighscores?.Count());
         }
 
         [TestMethod]
@@ -85,7 +82,6 @@ namespace ReactionGame.Tester
 
             //Act
             IEnumerable<Highscore> GetHighscores = await repository.GetHighscores();
-            File.Delete(testfile);
 
             //Assert
             Assert.AreEqual(3, GetHighscores?.Count());
@@ -102,7 +98,6 @@ namespace ReactionGame.Tester
             //Act
             await repository.DeleteAllHighscores();
             IEnumerable<Highscore> GetHighscores = await repository.GetHighscores();
-            File.Delete(testfile);
 
             //Assert
             Assert.AreEqual(0, GetHighscores?.Count());
@@ -182,10 +177,15 @@ namespace ReactionGame.Tester
             //Act
             await repository.DeleteHighscoresFromUsername("Tester");
             IEnumerable<Highscore> GetHighscores = await repository.GetHighscores();
-            File.Delete(testfile);
 
             //Assert
             Assert.AreEqual(2, GetHighscores?.Count());
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            File.Delete(testfile);
         }
     }
 }
