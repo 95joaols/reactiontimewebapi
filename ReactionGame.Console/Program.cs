@@ -97,11 +97,7 @@ namespace ReactionGame
             Console.WriteLine("\nNytt rekord!");
             Console.Write("Skriv ditt namn: ");
             string newName = Console.ReadLine();
-            Highscore highscore = new Highscore
-            {
-                Name = newName,
-                Time = time
-            };
+            Highscore highscore = new Highscore(newName, time);
             HttpResponseMessage httpResponseMessage = await client.PostAsJsonAsync("https://localhost:5001/Highscores", highscore);
         }
     }
