@@ -13,9 +13,12 @@ namespace ReactionGame
 {
     internal class Program
     {
+        private const string RequestUri = "https://localhost:5001/Highscores";
+
         //private static readonly List<Highscore> highscores = new List<Highscore>();
 
-        private static readonly HttpClient client = new HttpClient();
+        private static readonly HttpClientHandler clientHandler = new HttpClientHandler { ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; } };
+        private static readonly HttpClient client = new HttpClient(clientHandler);
 
         private static async Task Main(string[] args)
         {
@@ -58,8 +61,8 @@ namespace ReactionGame
 
                     Console.WriteLine("\nHIGHSCORE:");
 
-                    IEnumerable<Highscore> highscores = await client.GetFromJsonAsync<IEnumerable<Highscore>>("https://localhost:5001/Highscores");
-                    foreach (Highscore highscore in highscores)
+                    IEnumerable<Highscore> highscores = await client.GetFromJsonAsync<IEnumerable<Highscore>>(RequestUri);
+                    foreach (Highscore highscore in highscores.OrderBy(h => h.Time))
                     {
                         Console.WriteLine(highscore);
                     }
@@ -76,8 +79,17 @@ namespace ReactionGame
 
         private static async Task<bool> CheckNewHighscoreAsync(long elapsedMilliseconds)
         {
-            IEnumerable<Highscore> highscores = await client.GetFromJsonAsync<IEnumerable<Highscore>>("https://localhost:5001/Highscores");
-            if (!highscores.Any())
+            IEnumerable<Highscore> highscores = null;
+            try
+            {
+            highscores = await client.GetFromJsonAsync<IEnumerable<Highscore>>(RequestUri);
+
+            }
+            catch (Exception)
+            {
+
+            }
+            if (!highscores?.Any() ?? true)
             {
                 return true;
             }
@@ -98,7 +110,22 @@ namespace ReactionGame
             Console.Write("Skriv ditt namn: ");
             string newName = Console.ReadLine();
             Highscore highscore = new Highscore(newName, time);
-            HttpResponseMessage httpResponseMessage = await client.PostAsJsonAsync("https://localhost:5001/Highscores", highscore);
+            HttpResponseMessage response = null;
+            try
+            {
+                response = await client.PostAsJsonAsync(RequestUri, highscore);
+
+            }
+            catch (Exception)
+            {
+            }
+            if (response?.IsSuccessStatusCode ?? false)
+            {
+            }
+            else
+            {
+                //error
+            }
         }
     }
 }
