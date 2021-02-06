@@ -10,11 +10,12 @@ namespace ReactionGame.Blazor.Core.Services
 {
     public interface IHighscoreDataService
     {
-        Task<Highscore> CreateNewHighscore();
-        Task<IEnumerable<Highscore>> GetAllHighscore();
-        Task<Highscore> GetHighscoreById();
-        Task<IEnumerable<Highscore>> GetAllHighscoreByUsername();
-        Task DeleteAllHighscoreByUsername();
+        Task<Highscore> CreateNewHighscore(Highscore highscore);
+        Task<T> GetHighscore<T, T1>(T1? input) where T : Highscore where T1 : struct;
+        //Task<IEnumerable<Highscore>> GetAllHighscore();
+        //Task<Highscore> GetHighscoreById(int id);
+        //Task<IEnumerable<Highscore>> GetAllHighscoreByUsername(string usename);
+        Task DeleteAllHighscoreByUsername(string usename);
         Task DeleteAllHighscore();
     }
 }
