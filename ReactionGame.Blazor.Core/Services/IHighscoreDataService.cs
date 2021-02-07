@@ -11,7 +11,7 @@ namespace ReactionGame.Blazor.Core.Services
     public interface IHighscoreDataService
     {
         Task<Highscore> CreateNewHighscore(Highscore highscore);
-        Task<T> GetHighscore<T, T1>(T1? input) where T : Highscore where T1 : struct;
+        Task<T> GetHighscore<T, T1>(T1 input) where T : class;
         //Task<IEnumerable<Highscore>> GetAllHighscore();
         //Task<Highscore> GetHighscoreById(int id);
         //Task<IEnumerable<Highscore>> GetAllHighscoreByUsername(string usename);

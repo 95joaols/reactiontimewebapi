@@ -1,0 +1,26 @@
+﻿@page "/Highscore"
+
+<h1 class="page-title">HighscoreList</h1>
+
+@if (Highscores?.Any() ?? false)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Pos</th>
+                <th>Time</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Highscore item in Highscores)
+            {
+                <HighscoreC Pos=Highscores.ToList().IndexOf(item) Highscore=item/>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Highscores</p>
+}

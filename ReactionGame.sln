@@ -13,11 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionGame.Repository", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionGame.Tester", "ReactionGame.Tester\ReactionGame.Tester.csproj", "{DA2A1695-BFC3-4129-9F08-DE83A9F055D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactionGame.Blazor.Core", "ReactionGame.Blazor.Core\ReactionGame.Blazor.Core.csproj", "{6BDB75B4-B1C2-49F6-A432-080C3A54C795}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionGame.Blazor.Core", "ReactionGame.Blazor.Core\ReactionGame.Blazor.Core.csproj", "{6BDB75B4-B1C2-49F6-A432-080C3A54C795}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactionGame.Blazor.Server", "ReactionGame.Blazor.Server\ReactionGame.Blazor.Server.csproj", "{3BF8A9C0-0E8C-411A-8D74-85C114971D7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionGame.Blazor.Server", "ReactionGame.Blazor.Server\ReactionGame.Blazor.Server.csproj", "{3BF8A9C0-0E8C-411A-8D74-85C114971D7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactionGame.Blazor.WebAssembly", "ReactionGame.Blazor.WebAssembly\ReactionGame.Blazor.WebAssembly.csproj", "{6BB4AEDD-C2E9-49DC-B80F-4708CA2ED35D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactionGame.Blazor.WebAssembly", "ReactionGame.Blazor.WebAssembly\ReactionGame.Blazor.WebAssembly.csproj", "{6BB4AEDD-C2E9-49DC-B80F-4708CA2ED35D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

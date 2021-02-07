@@ -44,7 +44,7 @@ namespace ReactionGame.Blazor.Core.Services
         }
 
         public async Task<T> GetHighscore<T, T1>(T1 input)
-            where T : Highscore
+            where T : class
         {
             HttpResponseMessage response = null;
             try
