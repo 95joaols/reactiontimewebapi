@@ -46,26 +46,15 @@ namespace ReactionGame.Blazor.Core.Services
         public async Task<T> GetHighscore<T, T1>(T1 input)
             where T : class
         {
-            HttpResponseMessage response = null;
             try
             {
-                response = await _httpClient.GetAsync(input.ToString());
+                return await _httpClient.GetFromJsonAsync<T>(input.ToString());
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                return null;
             }
-            if (response?.IsSuccessStatusCode ?? false)
-            {
-                try
-                {
-                    return await response.Content.ReadFromJsonAsync<T>();
-                }
-                catch (Exception)
-                {
-                }
-            }
-            return null;
         }
 
         public async Task DeleteAllHighscore()

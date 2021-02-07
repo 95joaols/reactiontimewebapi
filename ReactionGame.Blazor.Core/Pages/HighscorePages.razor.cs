@@ -1,4 +1,6 @@
-﻿using ReactionGame.Blazor.Core.Services;
+﻿using Microsoft.AspNetCore.Components;
+
+using ReactionGame.Blazor.Core.Services;
 using ReactionGame.Entety;
 
 using System;
@@ -12,11 +14,13 @@ namespace ReactionGame.Blazor.Core.Pages
     partial class HighscorePages
     {
         IEnumerable<Highscore> Highscores { get; set; }
-        IHighscoreDataService highscoreDataService;
+
+        [Inject]
+        public IHighscoreDataService HighscoreDataService { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            Highscores = await highscoreDataService.GetHighscore<IEnumerable<Highscore>, string>("");
+            Highscores = await HighscoreDataService.GetHighscore<IEnumerable<Highscore>, string>("");
         }
     }
 }

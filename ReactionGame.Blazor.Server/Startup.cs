@@ -8,6 +8,7 @@ using ReactionGame.Blazor.Core.Services;
 
 
 using System;
+using System.Net.Http;
 
 namespace ReactionGame.Blazor.Server
 {
@@ -29,7 +30,12 @@ namespace ReactionGame.Blazor.Server
 
             services.AddHttpClient<IHighscoreDataService, HighscoreDataService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:5001/");
+                client.BaseAddress = new Uri("https://localhost:5001/Highscores/");
+            }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                ClientCertificateOptions = ClientCertificateOption.Manual,
+                ServerCertificateCustomValidationCallback =
+                (httpRequestMessage, cert, cetChain, policyErrors) => true
             });
         }
 
