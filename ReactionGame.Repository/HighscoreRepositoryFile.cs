@@ -45,6 +45,30 @@ namespace ReactionGame.Repository
             }
             return NewHighscore;
         }
+        //public async Task<TReturn> GetT<TReturn,TSingel, T1>(T1 input)
+        //   where TSingel : IdEntety
+        //{
+        //    try
+        //    {
+        //        string rawHighscore = await File.ReadAllTextAsync(fileLocation);
+        //        if (input != null)
+        //        {
+        //            if (input is int inputint)
+        //            {
+        //                return (TReturn)JsonSerializer.Deserialize<IEnumerable<TSingel>>(rawHighscore).Where((h) => h.Id == inputint).FirstOrDefault();
+        //            }
+        //            else
+        //            {
+        //                return (TReturn)JsonSerializer.Deserialize<IEnumerable<Highscore>>(rawHighscore).Where((h) => h.Name.ToLower() == input.ToString().ToLower());
+        //            }
+        //        }
+        //        return (TReturn)JsonSerializer.Deserialize<TSingel>(rawHighscore);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return null;
+        //    }
+        //}
 
         public async Task<IEnumerable<Highscore>> GetHighscores()
         {

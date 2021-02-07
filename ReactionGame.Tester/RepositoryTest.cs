@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ReactionGame.Entety;
 using ReactionGame.Repository;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -181,6 +182,30 @@ namespace ReactionGame.Tester
             //Assert
             Assert.AreEqual(2, GetHighscores?.Count());
         }
+        //[TestMethod]
+        //public async Task TestIfICanGetTAsync()
+        //{
+        //    //Arrange
+        //    Highscore highscore = new Highscore("Tester", 100);
+        //    Highscore highscore2 = new Highscore("Tester", 100);
+        //    Highscore highscore3 = new Highscore("Tester1", 100);
+        //    Highscore highscore4 = new Highscore("Tester1", 100);
+        //    IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
+        //    Highscore newHighscores = await repository.NewHighscores(highscore);
+        //    _ = await repository.NewHighscores(highscore2);
+        //    _ = await repository.NewHighscores(highscore3);
+        //    _ = await repository.NewHighscores(highscore4);
+
+
+        //    //Act
+        //    Highscore Returnhighscore1 = await repository.GetT<Highscore, Highscore, int>(newHighscores.Id);
+        //    IEnumerable<Highscore> Returnhighscore2 = await repository.GetT<IEnumerable<Highscore>, Highscore, string>("Tester1");
+        //    IEnumerable<Highscore> GetHighscores = await repository.GetHighscores();
+
+        //    //Assert
+        //    Assert.IsNotNull(Returnhighscore1, "Returnhighscore1");
+        //    Assert.AreEqual(2, Returnhighscore2.c, "Returnhighscore1");
+        //}
 
         [TestCleanup]
         public void TestCleanup()

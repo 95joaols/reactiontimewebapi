@@ -1,15 +1,13 @@
 namespace ReactionGame.Entety
 {
-    public class Highscore
+    public class Highscore : IdEntety
     {
-        public Highscore(string name, long time)
+        public Highscore(string name, long time) : base(name)
         {
-            Name = name;
             Time = time;
         }
 
-        public int Id { get; set; }
-        public string Name { get; set; }
+        
         public long Time { get; set; }
 
         public override string ToString()

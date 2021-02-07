@@ -43,14 +43,13 @@ namespace ReactionGame.Blazor.Core.Services
             return null;
         }
 
-        public async Task<T> GetHighscore<T, T1>(T1? input)
+        public async Task<T> GetHighscore<T, T1>(T1 input)
             where T : Highscore
-            where T1 : struct
         {
             HttpResponseMessage response = null;
             try
             {
-                response = await _httpClient.GetAsync(input?.ToString());
+                response = await _httpClient.GetAsync(input.ToString());
 
             }
             catch (Exception)
