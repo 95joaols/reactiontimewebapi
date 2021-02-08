@@ -121,7 +121,7 @@ namespace ReactionGame.Tester
                 addedhighscoreNull = await repository.NewHighscores(highscoreNull);
 
             }
-            catch (System.Exception)
+            catch (Exception)
             {
             }
             Highscore addedhighscoreNullName = null;
@@ -130,7 +130,7 @@ namespace ReactionGame.Tester
                 addedhighscoreNullName = await repository.NewHighscores(highscoreNullName);
 
             }
-            catch (System.Exception)
+            catch (Exception)
             {
             }
             Highscore addedhighscoreNoName = null;
@@ -139,7 +139,7 @@ namespace ReactionGame.Tester
                 addedhighscoreNoName = await repository.NewHighscores(highscoreNull);
 
             }
-            catch (System.Exception)
+            catch (Exception)
             {
             }
             Highscore addedhighscoreNotime = null;
@@ -148,7 +148,7 @@ namespace ReactionGame.Tester
                 addedhighscoreNotime = await repository.NewHighscores(highscoreNotime);
 
             }
-            catch (System.Exception)
+            catch (Exception)
             {
             }
             File.Delete(testfile);

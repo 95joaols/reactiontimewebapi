@@ -53,7 +53,6 @@ namespace ReactionGame.Blazor.Core.Services
             }
             catch (Exception e)
             {
-                throw;
                 return null;
             }
         }

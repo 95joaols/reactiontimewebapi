@@ -2,8 +2,10 @@
 
 using ReactionGame.Entety;
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -168,13 +170,46 @@ namespace ReactionGame.Tester
             {
                 response = await client.GetAsync(serverAdtesAPI);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
 
             }
 
             //Assert
-            Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.NoContent, "StatusCode");
+            Assert.IsTrue(response.StatusCode == HttpStatusCode.NoContent, "StatusCode");
+        }
+
+        [TestMethod]
+        public async Task TestIfICanGetAErrorIfISendForAInomationThatThasentExistAsync()
+        {
+            //Arrange
+            Highscore highscore = new Highscore("Tester", 100);
+            Highscore highscoreFromApi = null;
+            HttpResponseMessage response = await client.PostAsJsonAsync(serverAdtesAPI, highscore);
+            if (response?.IsSuccessStatusCode ?? false)
+            {
+                highscoreFromApi = await response.Content.ReadFromJsonAsync<Highscore>();
+            }
+            else
+            {
+                Assert.Fail("didend add");
+            }
+
+            Highscore Gethighscore = null;
+            try
+            {
+            Gethighscore = await client.GetFromJsonAsync<Highscore>(serverAdtesAPI + "/" + highscoreFromApi.Id +1);
+
+            }
+            catch (Exception e)
+            {
+            }
+            //Act
+
+
+            //Assert
+            Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.Created, "StatusCode");
+            Assert.IsNull(Gethighscore, "highscoreFromApi");
         }
 
         [TestCleanup]
