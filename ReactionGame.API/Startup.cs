@@ -19,6 +19,14 @@ namespace ReactionGame.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                builder =>
+                {
+                    builder.WithOrigins("*"); //NOT RECOMMENDED BUT NEEDED
+                });
+            });
 
             _ = services.AddControllers();
             _ = services.AddSwaggerGen(c =>
@@ -40,6 +48,8 @@ namespace ReactionGame.API
             _ = app.UseHttpsRedirection();
 
             _ = app.UseRouting();
+
+            _ = app.UseCors();
 
             _ = app.UseAuthorization();
 
