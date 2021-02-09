@@ -21,7 +21,7 @@ namespace ReactionGame.Blazor.WebAssembly
 
             builder.Services.AddHttpClient<IHighscoreDataService, HighscoreDataService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:5001/Highscores");
+                client.BaseAddress = new Uri("https://localhost:5001/Highscores/");
             });
 
             await builder.Build().RunAsync();

@@ -87,7 +87,7 @@ namespace ReactionGame.Repository
         public async Task<IEnumerable<Highscore>> GetHighscoresByUsername(string username)
         {
             IEnumerable<Highscore> highscore = await GetHighscores();
-            return highscore?.Where((h) => h.Name.ToLower() == username.ToLower());
+            return highscore?.Where((h) => h.Name.Contains(username, StringComparison.OrdinalIgnoreCase));
         }
 
         public async Task<Highscore> GetHighscoresById(int id)

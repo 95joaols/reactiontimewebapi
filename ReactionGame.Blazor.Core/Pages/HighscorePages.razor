@@ -2,6 +2,8 @@
 
 <h1 class="page-title">HighscoreList</h1>
 
+<input id="userName" @bind="Sheach"  @bind:event="oninput" class="form-control" />
+
 @if (Highscores?.Any() ?? false)
 {
     <table class="table">
