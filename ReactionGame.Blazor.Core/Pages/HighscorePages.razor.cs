@@ -21,6 +21,7 @@ namespace ReactionGame.Blazor.Core.Pages
         protected override async Task OnInitializedAsync()
         {
             Highscores = await HighscoreDataService.GetHighscore<IEnumerable<Highscore>, string>("");
+            Highscores = Highscores.OrderBy(h => h.Time);
         }
     }
 }

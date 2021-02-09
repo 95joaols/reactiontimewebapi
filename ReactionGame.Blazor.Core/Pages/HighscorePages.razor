@@ -15,7 +15,7 @@
         <tbody>
             @foreach (Highscore item in Highscores)
             {
-                <HighscoreC Pos=Highscores.ToList().IndexOf(item) Highscore=item/>
+                <HighscoreC Pos=Highscores.ToList().IndexOf(item)+1 Highscore=item/>
             }
         </tbody>
     </table>

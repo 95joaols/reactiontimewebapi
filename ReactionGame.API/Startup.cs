@@ -24,7 +24,9 @@ namespace ReactionGame.API
                 options.AddDefaultPolicy(
                 builder =>
                 {
-                    builder.WithOrigins("*"); //NOT RECOMMENDED BUT NEEDED
+                    builder.WithOrigins("*") //NOT RECOMMENDED BUT NEEDED
+                    .AllowAnyHeader();
+                    
                 });
             });
 
