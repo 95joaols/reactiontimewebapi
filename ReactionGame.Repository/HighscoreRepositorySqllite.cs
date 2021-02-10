@@ -51,7 +51,7 @@ namespace ReactionGame.Repository
             List<Highscore> temp = new List<Highscore>();
             await Task.Run(() =>
             {
-                temp = highscoreDbContext.Highscores.Where(h => h.Name.Contains(username, StringComparison.OrdinalIgnoreCase)).ToList();
+                temp = highscoreDbContext.Highscores.Where(h => h.Name.Contains(username)).ToList();
             });
             return temp;
         }
@@ -60,6 +60,7 @@ namespace ReactionGame.Repository
         {
             await highscoreDbContext.Highscores.AddAsync(NewHighscore);
             await highscoreDbContext.SaveChangesAsync();
+
             return NewHighscore;
         }
     }

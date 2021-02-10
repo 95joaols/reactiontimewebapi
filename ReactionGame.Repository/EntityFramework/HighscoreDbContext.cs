@@ -13,7 +13,6 @@ namespace ReactionGame.Repository.EntityFramework
         public DbSet<Highscore> Highscores { get;  set; }
         public HighscoreDbContext(DbContextOptions options) : base(options)
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
     }

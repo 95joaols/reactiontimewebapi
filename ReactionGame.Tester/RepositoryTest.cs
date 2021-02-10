@@ -20,7 +20,7 @@ namespace ReactionGame.Tester
         {
             //Arrange
             Highscore highscore = new Highscore("Tester", 100);
-            IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
+            IHighscoreRepository repository = new HighscoreRepositorySqllite();
 
             //Act
             Highscore addedHighscore = await repository.NewHighscores(highscore);
@@ -33,7 +33,7 @@ namespace ReactionGame.Tester
         public async Task TestIfICanGetTheLastTestDataAsync()
         {
             //Arrange
-            IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
+            IHighscoreRepository repository = new HighscoreRepositorySqllite();
 
             Highscore highscore = new Highscore("Tester", 100);
             Highscore addedHighscore = await repository.NewHighscores(highscore);
@@ -49,7 +49,7 @@ namespace ReactionGame.Tester
         public async Task TestIfICanGetAllHighscoreByUsernameAsync()
         {
             //Arrange
-            IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
+            IHighscoreRepository repository = new HighscoreRepositorySqllite();
 
             Highscore highscore = new Highscore("joacim", 100);
             Highscore highscore1 = new Highscore("joacim", 100);
@@ -72,7 +72,7 @@ namespace ReactionGame.Tester
         public async Task TestIfIAdd3DataThatIGet3DataAsync()
         {
             //Arrange
-            IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
+            IHighscoreRepository repository = new HighscoreRepositorySqllite();
 
             Highscore highscore = new Highscore("Tester", 100);
             Highscore highscore1 = new Highscore("Tester", 1010);
@@ -93,7 +93,7 @@ namespace ReactionGame.Tester
         {
             //Arrange
             Highscore highscore = new Highscore("Tester", 100);
-            IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
+            IHighscoreRepository repository = new HighscoreRepositorySqllite();
             _ = await repository.NewHighscores(highscore);
 
             //Act
@@ -112,7 +112,7 @@ namespace ReactionGame.Tester
             Highscore highscoreNullName = new Highscore(null, 100);
             Highscore highscoreNoName = new Highscore("", 100);
             Highscore highscoreNotime = new Highscore("", 0);
-            IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
+            IHighscoreRepository repository = new HighscoreRepositorySqllite();
 
             //Act
             Highscore addedhighscoreNull = null;
@@ -168,7 +168,7 @@ namespace ReactionGame.Tester
             Highscore highscore2 = new Highscore("Tester", 100);
             Highscore highscore3 = new Highscore("Tester1", 100);
             Highscore highscore4 = new Highscore("Tester1", 100);
-            IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
+            IHighscoreRepository repository = new HighscoreRepositorySqllite();
             _ = await repository.NewHighscores(highscore);
             _ = await repository.NewHighscores(highscore2);
             _ = await repository.NewHighscores(highscore3);
@@ -210,7 +210,8 @@ namespace ReactionGame.Tester
         [TestCleanup]
         public void TestCleanup()
         {
-            File.Delete(testfile);
+            IHighscoreRepository repository = new HighscoreRepositorySqllite();
+            repository.DeleteAllHighscores();
         }
     }
 }
