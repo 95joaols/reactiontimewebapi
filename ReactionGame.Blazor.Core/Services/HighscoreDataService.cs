@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -30,7 +31,7 @@ namespace ReactionGame.Blazor.Core.Services
             catch (Exception)
             {
             }
-            if (response?.IsSuccessStatusCode ?? false)
+            if (response?.StatusCode == HttpStatusCode.Created)
             {
                 try
                 {
