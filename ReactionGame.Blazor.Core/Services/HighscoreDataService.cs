@@ -50,7 +50,6 @@ namespace ReactionGame.Blazor.Core.Services
             try
             {
                 return await _httpClient.GetFromJsonAsync<T>(input.ToString());
-
             }
             catch (Exception e)
             {
