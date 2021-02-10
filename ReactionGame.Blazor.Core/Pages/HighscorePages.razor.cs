@@ -42,7 +42,7 @@ namespace ReactionGame.Blazor.Core.Pages
             if (int.TryParse(Sheach, out int id))
             {
                 List<Highscore> Highscoreslists = new List<Highscore>();
-                Highscoreslists.Add(await HighscoreDataService.GetHighscore<Highscore, string>(id.ToString()));
+                Highscoreslists.Add(await HighscoreDataService.GetHighscore<Highscore, int>(id));
                 Highscores = Highscoreslists;
             }
             else
