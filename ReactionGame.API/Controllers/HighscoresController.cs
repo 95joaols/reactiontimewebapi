@@ -13,7 +13,12 @@ namespace ReactionGame.API.Controllers
     [Route("[controller]")]
     public class HighscoresController : ControllerBase
     {
-        private readonly IHighscoreRepository Repository = new HighscoreRepositoryFile("Highscore.txt");
+        private readonly IHighscoreRepository Repository;
+
+        public HighscoresController(IHighscoreRepository repository)
+        {
+            Repository = repository;
+        }
 
         [HttpGet] //Highscores
         public async Task<ActionResult<IEnumerable<Highscore>>> GetHighscoresAsync()

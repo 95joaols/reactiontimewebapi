@@ -22,7 +22,7 @@ namespace ReactionGame.Blazor.Core.Pages
         [Inject]
         public IHighscoreDataService HighscoreDataService { get; set; }
         [Parameter]
-        public bool CombresedAndLocal { get; set; } = true;
+        public bool CombresedAndLocal { get; set; } = false;
 
         protected override async Task OnInitializedAsync()
         {

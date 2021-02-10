@@ -1,4 +1,6 @@
-﻿using ReactionGame.Entety;
+﻿using Microsoft.EntityFrameworkCore;
+
+using ReactionGame.Entety;
 using ReactionGame.Repository.EntityFramework;
 
 using System;
@@ -34,11 +36,7 @@ namespace ReactionGame.Repository
         public async Task<IEnumerable<Highscore>> GetHighscores()
         {
             List<Highscore> temp = new List<Highscore>();
-            await Task.Run(() =>
-             {
-                 temp = highscoreDbContext.Highscores.ToList();
-             });
-            return temp;
+            return await highscoreDbContext.Highscores.ToListAsync();
         }
 
         public async Task<Highscore> GetHighscoresById(int id)
@@ -49,11 +47,8 @@ namespace ReactionGame.Repository
         public async Task<IEnumerable<Highscore>> GetHighscoresByUsername(string username)
         {
             List<Highscore> temp = new List<Highscore>();
-            await Task.Run(() =>
-            {
-                temp = highscoreDbContext.Highscores.Where(h => h.Name.Contains(username)).ToList();
-            });
-            return temp;
+            return await highscoreDbContext.Highscores.Where(h => h.Name.Contains(username)).ToListAsync();
+
         }
 
         public async Task<Highscore> NewHighscores(Highscore NewHighscore)
