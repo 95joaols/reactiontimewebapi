@@ -1,4 +1,4 @@
-##Beskrivning av mina endpoints
+## Beskrivning av mina endpoints
 de endpoints som jag använder mig av är:
 (get)/Highscores/		     	 => hämta en IEnumerable<Highscore>
 (Post)/Highscores/		      	=> skicka in Highscore i sparande
@@ -12,13 +12,13 @@ och jag skapade för rolighetens skull (Delete)/Highscores/{username} för att t
 
 ---
 
-##Beskrivning av dataflödet mellan reaktionsspelet och webapiet
+## Beskrivning av dataflödet mellan reaktionsspelet och webapiet
 
 
 som det är uppbyggt så att de 3 stora projektetena är api, console och blazorna.
 alla är kopplade med “ReactionGame.Entety”.
 Jag kommer att tar och fokusera på blazorn(core) och api.
-###HighscoreDataService
+### HighscoreDataService
 
 i blazor har jag klassen “HighscoreDataService” som håller kontakten med api(va HttpClient). När den tar och skapa en ny Highscore så skicka jag “PostAsJsonAsync” sen tar jag och kolla om jag har en response och om jag får StatusCode Created sen tar jag får ut Highscore som jag får tillbaka.
 I HighscoreDataService har jag “GetHighscore<T, T1>(T1 input)” som jag tog och skapade en generisk metod för att slå ihop alla get. Jag gjorde den till att vara generisk genom att jag inte ville har 4 metoder som nästan gör samma sak. Men man få tänka på när man gör den till att vara generisk är att den blir svårare att debugga och felsöker för att det finns flera set som kan går fel som att man får tillbaka fel returtyp.
@@ -29,15 +29,15 @@ Det gör att det är svårare att få reda på vad som inte fungera.
 Om jag skulle använda mig av “GetAsync” skulle jag på mycket enkelt sätt få tag på StatusCode men det som gör att jag inte väller det i GetHighscore är att den är jobbigare att tar ut informationen och det gör att man inte på en snabb blick titta på corden och veta vad den gör..
 Sen har jag de två deliet metoderna som är strate forward de kalla på “DeleteAsync” antingen med eller utan parameter.
 
-###api
+### api
 I api “HighscoresController” kommer de in request till api som automatisk sortera in i de metoder som är definierade i api.
 i “GetHighscoresAsync” skickar jag tillbaka NoContent eller Ok beror på vad jag får tillbaka från IHighscoreRepository.
 alla mina metoder skicka tillbaka ActionResult. Detta gör jag för att medela den som kallade apiet vad resultaten är och om den lykedes eller inte.
 de resultat som jag skicka kan vara:
-*Ok
-*NoContent
-*BadRequest
-*CreatedAtAction
+* Ok
+* NoContent
+* BadRequest
+* CreatedAtAction
 Genom de så meddelar jag vad som händer i api.
 
 Jag har två metoder som söker efter specifik info bland Highscore GetHighscoresByIdAsync och GetHighscoresByUsernameAsync genom att få olika info.
@@ -53,7 +53,7 @@ men problemen med dessa är att det skulle bryta med vad uppgiften beskrivningen
 Allt som skickas mellan api och källaren är json(om det är någon data som skickas).
 
 ---
-##Egen bedömning
+## Egen bedömning
 Jag tyckte inte att det var så jättesvår uppgift efter att man fick all kod så var det nästan allt klart. 
 så jag började gå vidare och testa nya saker.
 Den första som jag testade var “Unit Test”.
