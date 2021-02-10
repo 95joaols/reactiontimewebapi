@@ -51,10 +51,10 @@ namespace ReactionGame.Tester
             //Arrange
             IHighscoreRepository repository = new HighscoreRepositoryFile(testfile);
 
-            Highscore highscore = new Highscore("Tester", 100);
-            Highscore highscore1 = new Highscore("Tester1", 100);
-            Highscore highscore2 = new Highscore("Tester", 100);
-            Highscore highscore3 = new Highscore("Tester3", 100);
+            Highscore highscore = new Highscore("joacim", 100);
+            Highscore highscore1 = new Highscore("joacim", 100);
+            Highscore highscore2 = new Highscore("ralief", 100);
+            Highscore highscore3 = new Highscore("ralief", 100);
 
             _ = await repository.NewHighscores(highscore);
             _ = await repository.NewHighscores(highscore1);
@@ -62,7 +62,7 @@ namespace ReactionGame.Tester
             _ = await repository.NewHighscores(highscore3);
 
             //Act
-            IEnumerable<Highscore> GetHighscores = await repository.GetHighscoresByUsername("Tester");
+            IEnumerable<Highscore> GetHighscores = await repository.GetHighscoresByUsername("jo");
 
             //Assert
             Assert.AreEqual(2, GetHighscores?.Count());

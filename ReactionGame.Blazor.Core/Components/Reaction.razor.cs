@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
+using ReactionGame.Blazor.Core.Event;
 using ReactionGame.Blazor.Core.Services;
 using ReactionGame.Entety;
 
@@ -26,41 +27,53 @@ namespace ReactionGame.Blazor.Core.Components
         [Inject]
         public IHighscoreDataService HighscoreDataService { get; set; }
 
-        private void StartGame()
+        private async Task StartGameAsync()
         {
-            playing = true;
-            Info = "StandBy";
-            Timer timer = new Timer(new Random().Next(1000, 15000))
+            await InvokeAsync(() =>
             {
-                AutoReset = false
-            };
-            timer.Elapsed += PressNow;
-            timer.Start();
-            GameLable = "Waite";
-            StateHasChanged();
+                playing = true;
+                Info = "StandBy";
+                Timer timer = new Timer(new Random().Next(1000, 15000))
+                {
+                    AutoReset = false
+                };
+                timer.Elapsed += PressNow;
+                timer.Start();
+                GameLable = "Waite";
+                StateHasChanged();
+            });
 
         }
 
-        private void PressNow(object sender, ElapsedEventArgs e)
+        private async void PressNow(object sender, ElapsedEventArgs e)
         {
-            Info = "Press";
-            Press = true;
-            GameLable = "Press";
-            Stopwatch.Start();
-            StateHasChanged();
+            await InvokeAsync(() =>
+            {
+                Info = "Press";
+                Press = true;
+                GameLable = "Press";
+                Stopwatch.Start();
+                StateHasChanged();
+            });
+
         }
 
-        public void presed()
+        public async Task PresedAsync()
         {
-            Stopwatch.Stop();
-            Press = false;
-            playing = false;
-            GameLable = "Play";
+            await InvokeAsync(async () =>
+            {
+                Stopwatch.Stop();
+                Press = false;
+                playing = false;
+                GameLable = "Play";
 
-            Info = "Time " + Stopwatch.ElapsedMilliseconds +"ms";
-            HighscoreDataService.CreateNewHighscore(new Highscore(UserName, Stopwatch.ElapsedMilliseconds));
-            Stopwatch.Reset();
-            StateHasChanged();
+                Info = "Time " + Stopwatch.ElapsedMilliseconds + "ms";
+                Highscore highscore = new Highscore(UserName, Stopwatch.ElapsedMilliseconds);
+                highscore = await HighscoreDataService.CreateNewHighscore(highscore);
+                HighscoreEvent.NewHighscoreMetod(this, highscore);
+                Stopwatch.Reset();
+                StateHasChanged();
+            });
         }
     }
 }

@@ -2,7 +2,10 @@
 
 <h1 class="page-title">HighscoreList</h1>
 
-<input id="userName" @bind="Sheach"  @bind:event="oninput" class="form-control" />
+@if (!CombresedAndLocal)
+{
+    <input id="userName" @bind="Sheach" @bind:event="oninput" class="form-control" />
+}
 
 @if (Highscores?.Any() ?? false)
 {
@@ -17,7 +20,7 @@
         <tbody>
             @foreach (Highscore item in Highscores)
             {
-                <HighscoreC Pos=Highscores.ToList().IndexOf(item)+1 Highscore=item/>
+                <HighscoreC Pos=Highscores.ToList().IndexOf(item)+1 Highscore=item />
             }
         </tbody>
     </table>

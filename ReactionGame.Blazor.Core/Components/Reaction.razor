@@ -2,9 +2,9 @@
 <p>@Info</p>
 @if(!playing)
 { 
-<button type="button" class="btn btn-primary" @onclick="StartGame">@GameLable</button>
+<button type="button" class="btn btn-primary" @onclick="StartGameAsync">@GameLable</button>
 }
 @if (Press)
 {
-<button type="button" class="btn btn-primary" @onclick="presed">Press</button>
+<button type="button" class="btn btn-primary" @onclick="PresedAsync">Press</button>
 }
