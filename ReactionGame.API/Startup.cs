@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
+using ReactionGame.Repository;
+
 namespace ReactionGame.API
 {
     public class Startup
@@ -29,6 +31,9 @@ namespace ReactionGame.API
                     
                 });
             });
+
+            //services.AddSingleton<IHighscoreRepository, HighscoreRepositoryFile>((s) => new HighscoreRepositoryFile("Highscore.txt"));
+            services.AddSingleton<IHighscoreRepository, HighscoreRepositorySqllite>();
 
             _ = services.AddControllers();
             _ = services.AddSwaggerGen(c =>
